@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  slarchive:
+    image: slarchive:latest
+    build: slarchive/
+    links:
+      - ringserver
+    command: ["ringserver:18000"]
+    volumes:
+      - /tmp/intermagnet/slarchive:/data
+  ringserver:
+    image: ringserver:latest
+    build: ringserver/
+    ports:
+      - 18000:18000
+    volumes:
+      - /tmp/intermagnet/ringserver:/data/miniseed
